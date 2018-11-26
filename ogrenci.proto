@@ -1,0 +1,33 @@
+syntax = "proto3";
+package ogrenci;
+
+message Ogrenci {
+  int32 id = 1;
+  string Name = 2;
+	string SurName = 3;
+  int32 Number = 4;
+}
+
+service OgrenciHub {
+  rpc GetOgrenciAll (OgrenciID) returns (OgrenciListReply) {}
+  rpc GetOgrenciByID (OgrenciID) returns (OgrenciReply) {}
+  rpc InsertOgrenci (OgrenciRequest) returns (OgrenciReply) {}
+  rpc UpdateOgrenci (OgrenciRequest) returns (OgrenciReply) {}
+  rpc DeleteOgrenciByID (OgrenciID) returns (OgrenciReply) {}
+}
+
+message OgrenciID {
+  int32 id = 1;
+}
+
+message OgrenciRequest {
+  Ogrenci ogrenci = 1;
+}
+
+message OgrenciReply {
+  Ogrenci ogrenci = 1;
+}
+
+message OgrenciListReply {
+  repeated Ogrenci ogrenci = 1;
+}
